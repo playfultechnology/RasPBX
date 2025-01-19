@@ -45,24 +45,25 @@ password: raspberry
  - c.) Copy `install` and `install.tar.gz` from this repository to the /home/pi directory.
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/winscp.jpg" alt="WinSCP" />
 
-## 4.) FreePBX Installation: Phase 1 (3mins)
+## 4.) FreePBX Installation: Phase 1 (2mins)
  - a.) Use PuTTY to create a SSH connection to:
  ```
 host: raspberrypi.local
 username: pi
 password: raspberry
 ```
- - b.) Set executable permissions on the install script `chmod +x install`
- - c.) Run the install script `sudo ./install`
+- b.) Set executable permissions on the install script `chmod +x install`
+- c.) Run the install script `sudo ./install`
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/putty1.jpg" alt="Putty" />
- - d.) When prompted:
-   - Set pi user password
-   - Set root user password
-   - Select FreePBX version
-   - Select Asterisk version
-   - Use Edge?
-   - Disable IPv6 option? ('No' recommended)
- - e.) Review selections as follows:
+
+- d.) When prompted...:
+  - Set pi user password
+  - Set root user password
+  - Select FreePBX version
+  - Select Asterisk version
+  - Use Edge?
+  - Disable IPv6 option? ('No' recommended)
+- e.) Review selections as follows:
 ```
 FreePBX Version: 17.0   (c)
 Asterisk Version: 22    (d)
@@ -70,7 +71,7 @@ Edge Enabled: Yes       (y)
 IPv6 Enabled: Yes       (n)
 ```
 
-## 5.) RaspPi OS Configuration (3mins)
+## 5.) RaspPi OS Configuration (2mins)
  - a.) System Options->Set Hostname (1/S4) `RasPBX`
  - b.) Localisation Options->Locale (5/L1) `en_GB.UTF-8`
  - c.) Localisation Options->Timezone (5/L2) `Europe - London`
@@ -80,3 +81,50 @@ IPv6 Enabled: Yes       (n)
 The Raspberry Pi will reboot, closing the connection to PuTTY.
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/rpisetup.jpg" alt="Rasp Pi OS" />
 
+## 6.) FreePBX Installation: Phase 2 (5mins)
+- a.) Create a new PuTTY connection, using the **new** hostname and/or root credentials set in the previous steps (you may receive a message saying cached key is out-of-date - update it)
+e.g. 
+ ```
+host: raspbx.local
+username: root
+password: raspberry
+```
+- b.) Having connected successfully, FreePBX installation will continue automatically. 
+
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/freepbx2.jpg" alt="FreePBX Phase 2" />
+
+The Raspberry Pi will reboot, closing the connection to PuTTY.
+
+## 7.) FreePBX Installation: Phase 3 (30mins)
+- a.) Restart the PuTTY connection using the same root credentials as in the previous step (right click on the PuTTY menu bar and select "Restart Session")
+ ```
+host: raspbx.local
+login as: root
+root@raspbx.local's password: raspberry
+```
+- b.) Confirm the selection made in 4d., as follows:
+```
+FreePBX Version: 17.0   (c)
+Asterisk Version: 22    (d)
+Edge Enabled: Yes       (y)
+IPv6 Enabled: Yes       (n)
+```
+This step will take some time. Also, it does not appear to finish cleanly. My PuTTY connection timed out, with the following as the last message received:
+
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/putty2.jpg" alt="Putty" />
+
+The Raspberry Pi will reboot, closing the connection to PuTTY.
+
+## 7.) FreePBX Installation: Phase 4 (2mins)
+- a.) Restart the PuTTY connection using the same root credentials as in the previous step for one last time (right click on the PuTTY menu bar and select "Restart Session")
+ ```
+host: raspbx.local
+login as: root
+root@raspbx.local's password: raspberry
+```
+- b.) The FreePBX installation should continue as in previous steps, and will complete with the message `FreePBX Installation Complete`
+
+## 8.) FreePBX Administration
+- a.) Log in to the web GUI in a browser by going to `raspbx.local`
+
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/raspbxlocal.jpg" alt="FreePBX Administration" />
