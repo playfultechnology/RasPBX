@@ -28,4 +28,11 @@ This is based on snippets from various sources, primarily https://www.dslreports
  - Use a SD card >8Gb
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/diskimager.jpg" alt="Disk Imager" />
 
-## 3.) 
+## 3.) Configure OS
+ - The SD card should now appear in Windows Explorer as a partition names "bootfs"
+ - Create an empty file in the root directory named "ssh"
+ - Create a text file named "userconf" in the root directory containing the following:
+   
+```pi:$6$c70VpvPsVNCG0YR5$l5vWWLsLko9Kj65gcQ8qvMkuOoRkEagI90qi3F/Y7rm8eNYZHW8CY6BOIKwMH7a3YYzZYL90zf304cAHLFaZE0```
+
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/bootfs.jpg" alt="BootFS" />
