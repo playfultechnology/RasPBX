@@ -19,20 +19,33 @@ So... this repository intends to document the process of creating an up-to-date 
 
 This is based on snippets from various sources, primarily https://www.dslreports.com/forum/r30661088-PBX-FreePBX-for-the-Raspberry-Pi .
 
-## 1.) Download Raspberry Pi OS
- - Download from https://www.raspberrypi.com/software/operating-systems/
- - I'm using 2024-11-19-raspios-bookworm-arm64-lite.img.xz
-
-## 2.) Burn OS image onto SD card
- - I'm using DiskImager from https://diskimager.org/
- - Use a SD card >8Gb
+## 1.) Install Raspberry Pi OS (20mins)
+ a.) Download the latest OS image from https://www.raspberrypi.com/software/operating-systems/ . I'm using [2024-11-19-raspios-bookworm-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz)
+ b.) Burn the OS image onto an >8Gb SD card. I use [DiskImager](https://diskimager.org/) to do this (but you could alternatively use [Etcher](https://etcher.io/) etc.)
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/diskimager.jpg" alt="Disk Imager" />
 
-## 3.) Configure OS
- - The SD card should now appear in Windows Explorer as a partition names "bootfs"
- - Create an empty file in the root directory named "ssh"
- - Create a text file named "userconf" in the root directory containing the following:
+## 2.) Configure OS in Windows (2mins)
+ a.) Once the OS image is burned, the SD card should automically be mounted in Windows Explorer as a partition named "bootfs"
+ b.) Create an empty file in the bootfs root directory named "ssh"
+ c.) Create a text file named "userconf" in the bootfs root directory containing the following:
    
-```pi:$6$c70VpvPsVNCG0YR5$l5vWWLsLko9Kj65gcQ8qvMkuOoRkEagI90qi3F/Y7rm8eNYZHW8CY6BOIKwMH7a3YYzZYL90zf304cAHLFaZE0```
+```
+pi:$6$c70VpvPsVNCG0YR5$l5vWWLsLko9Kj65gcQ8qvMkuOoRkEagI90qi3F/Y7rm8eNYZHW8CY6BOIKwMH7a3YYzZYL90zf304cAHLFaZE0
+```
 
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/bootfs.jpg" alt="BootFS" />
+
+## 3.) Copy Installation script to Raspberry Pi
+ a.) Insert the SD card into the Raspberry Pi (connected to your LAN via ethernet cable) and power on
+ b.) Use [WinSCP](https://winscp.net/eng/index.php) to create an SFTP connection to:
+ 
+ ```
+host: raspberrypi.local
+ username: pi
+ password: raspberry
+```
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/winscp.jpg" alt="WinSCP" />
+
+
+   
+
