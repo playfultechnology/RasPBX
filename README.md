@@ -126,5 +126,22 @@ root@raspbx.local's password: raspberry
 
 ## 8.) FreePBX Administration
 - a.) Log in to the web GUI in a browser by going to `raspbx.local`
+- b.) Assign an administrator account credentials. I'll choose `asterisk`, `asterisk`
 
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/raspbxlocal.jpg" alt="FreePBX Administration" />
+
+e with the message `FreePBX Installation Complete`
+
+## 9.) Create Extensions
+- a.) Go Connectivity->Extensions
+- b.) Add Extension + Add New SIP [chan_pjsip] Extension
+- c.) There are several options, but only three are required:
+  - **User Extension** is the phone number that users will dial to call this extension
+  - **Display Name** specifies the name associated with this extension within FreePBX, and will also be sent as CallerID for outgoing calls
+  - **Secret** is the password used by devices that connect to this extension
+```
+User Extension: 1000
+Display Name: Handset
+Secret: 82f5d5f5e4410fc003bd4c120bb06b6c
+```
+- d.) **IMPORTANT** to save changes, click both the Submit button AND the Apply Config button!
