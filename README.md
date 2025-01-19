@@ -54,6 +54,29 @@ password: raspberry
 ```
  - b.) Set executable permissions on the install script `chmod +x install`
  - c.) Run the install script `sudo ./install`
-   
-
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/putty1.jpg" alt="Putty" />
+ - d.) When prompted:
+   - Set pi user password
+   - Set root user password
+   - Select FreePBX version
+   - Select Asterisk version
+   - Use Edge?
+   - Disable IPv6 option? ('No' recommended)
+ - e.) Review selections as follows:
+```
+FreePBX Version: 17.0   (c)
+Asterisk Version: 22    (d)
+Edge Enabled: Yes       (y)
+IPv6 Enabled: Yes       (n)
+```
+
+## 5.) RaspPi OS Configuration (3mins)
+ - a.) System Options->Set Hostname (1/S4) `RasPBX`
+ - b.) Localisation Options->Locale (5/L1) `en_GB.UTF-8`
+ - c.) Localisation Options->Timezone (5/L2) `Europe - London`
+ - d.) Advanced Options->Expand Filesystem (6/A1)
+ - e.) Finish/Reboot Now `No`
+
+The Raspberry Pi will reboot, closing the connection to PuTTY.
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/rpisetup.jpg" alt="Rasp Pi OS" />
+
