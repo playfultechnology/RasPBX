@@ -1,7 +1,7 @@
 ![Rasp Pi](https://img.shields.io/badge/Rasp&nbsp;Pi-5-brgreen)
 ![Rasp Pi OS](https://img.shields.io/badge/Debian-12&nbsp;(Bookworm)-brgreen)
-![Asterisk](https://img.shields.io/badge/Asterisk-22-brgreen)
-![FreePBX](https://img.shields.io/badge/FreePBX-17-brgreen)
+![Asterisk](https://img.shields.io/badge/Asterisk-22.1.1-brgreen)
+![FreePBX](https://img.shields.io/badge/FreePBX-17.0.19.23-brgreen)
 
 
 # RasPBX Background
