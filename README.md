@@ -3,8 +3,7 @@
 ![Asterisk](https://img.shields.io/badge/Asterisk-22.1.1-brgreen)
 ![FreePBX](https://img.shields.io/badge/FreePBX-17.0.19.23-brgreen)
 
-
-# RasPBX Background
+# RasPBX
 Installation of Asterisk and FreePBX GUI on Raspberry Pi
 
  - "[Asterisk](https://www.asterisk.org/)" is a PBX communication server
@@ -17,7 +16,9 @@ So... this repository intends to document the process of creating an up-to-date 
  - FreePBX 17 (2024-08-02)
  - Rasp Pi OS, Debian 12 Bookworm (2024-11-19)
 
-This is based on snippets from various sources, primarily https://www.dslreports.com/forum/r30661088-PBX-FreePBX-for-the-Raspberry-Pi .
+This guide is based on my own experience combined with snippets from various sources, primarily https://www.dslreports.com/forum/r30661088-PBX-FreePBX-for-the-Raspberry-Pi .
+
+# Installation
 
 ## 1.) Install Raspberry Pi OS (20mins)
  - a.) Download the latest OS image from https://www.raspberrypi.com/software/operating-systems/ . I'm using [2024-11-19-raspios-bookworm-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz)
@@ -124,15 +125,22 @@ root@raspbx.local's password: raspberry
 ```
 - b.) The FreePBX installation should continue as in previous steps, and will complete with the message `FreePBX Installation Complete`
 
-## 8.) FreePBX Administration
+
+# FreePBX Configuration
+
+## 8.) FreePBX Settings
 - a.) Log in to the web GUI in a browser by going to `raspbx.local`
 - b.) Assign an administrator account credentials. I'll choose `asterisk`, `asterisk`
 
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/raspbxlocal.jpg" alt="FreePBX Administration" />
 
-e with the message `FreePBX Installation Complete`
+- c.) Go to Asterisk - SIP Settings and click **Detect Network Settings**. Ensure that this fills in the Local Networks address (failure to do this will mean that any call will be cut-off after 30 seconds)
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/freepbxnat.jpg" alt="FreePBX NAT settings" />
+- d.) **IMPORTANT** to save changes, click both the Submit button AND the Apply Config button!
 
 ## 9.) Create Extensions
+An “extension” is the name for any destination on the Asterisk phone network – it defines the number that is dialled to call a physical telephone, a “virtual” software telephone, or access a “feature” service (like the speaking clock or an automated message line). Every number that you want players to be able to dial a number and have something happen needs to have an associated extension.
+To create a new extension associated with a telephone, perform the following steps:
 - a.) Go Connectivity->Extensions
 - b.) Add Extension + Add New SIP [chan_pjsip] Extension
 - c.) There are several options, but only three are required:
@@ -145,3 +153,32 @@ Display Name: Handset
 Secret: 82f5d5f5e4410fc003bd4c120bb06b6c
 ```
 - d.) **IMPORTANT** to save changes, click both the Submit button AND the Apply Config button!
+
+# Connecting a Phone Handset to an Extension
+To connect a regular analog phone to the network requires a VoIP phone adaptor. This section explains how to configure the Linksys PAP2T device to map the handset plugged into Line 1 to the extension created in the previous section. Note that if you use a different ATA your settings may differ slightly, but the general approach should remain the same.
+- a.) Open a web browser and navigate to the web interface for your ATA device.
+- b.) Log on to the management screen (click the Admin Login link at the top right of the page), and click on the Line 1 tab to configure the device plugged into Line 1.
+- c.) Change the following settings:
+  - **Proxy**: This should be set to the static IP address assigned to your Raspberry Pi running Asterisk. E.g. 192.168.1.33.
+  - **Display Name**: This should match the “_Display Name_” set in the FreePBX extension configuration in the previous section.
+  - **User ID**: This should match the “_User Extension_” set in the FreePBX extension
+  - **Password**: This should match the “_Secret_” set in the FreePBX extension
+
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/linksys.jpg" alt="LinkSys Settings" />
+
+# Creating a Virtual Softphone
+You can also make and receive calls using a software client mapped to an extension. I’m using the free program MicroSIP to simulate a VOIP phone on my PC.
+- a.) Download MicroSIP from https://www.microsip.org/
+- b.) Set up account information as follows:
+  - **Account Name**: This should match the “_Display Name_” set in the FreePBX extension
+  - **SIP Server** and **SIP Proxy**: These should both be set to the static IP address assigned to your Raspberry Pi running Asterisk. E.g. 192.168.1.33.
+  - **Username**: This should match the “_User Extension_” set in the FreePBX extension
+  - **Domain**: This should be set to `localhost`
+  - **Password**: This should match the “_Secret_” set in the FreePBX extension
+-
+- Setup the connection information as shown in Figure 8. 
+As when setting up the ATA in the previous section, the Username and Password must match the Extension and Secret set up in Asterisk
+The SIP Server and SIP Proxy should be the IP address assigned to the Raspberry Pi that is running Asterisk.
+Domain should be set to “localhost” 
+
+
