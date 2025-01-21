@@ -175,8 +175,8 @@ You can also make and receive calls using a software client mapped to an extensi
   - **Username**: This should match the “_User Extension_” set in the FreePBX extension
   - **Domain**: This should be set to `localhost`
   - **Password**: This should match the “_Secret_” set in the FreePBX extension
--
-- Setup the connection information as shown in Figure 8. 
+
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/microsip.jpg" alt="MicroSIP settings" />
 As when setting up the ATA in the previous section, the Username and Password must match the Extension and Secret set up in Asterisk
 The SIP Server and SIP Proxy should be the IP address assigned to the Raspberry Pi that is running Asterisk.
 Domain should be set to “localhost” 
