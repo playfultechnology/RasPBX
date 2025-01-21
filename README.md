@@ -126,6 +126,12 @@ root@raspbx.local's password: raspberry
 - b.) The FreePBX installation should continue as in previous steps, and will complete with the message `FreePBX Installation Complete`
 
 
+# Debugging
+By default, Asterisk will run in the background. However, it can be useful to attach a remote console to the running process by calling the -r option. You can also specify a level of verbosity using the -v option.
+- a.) Use PuTTY to log in to the Raspbery Pi that is running Asterisk, as the `root` user.
+- b.) Issue the command `asterisk -rvvv` to connect a console to Asterisk
+<img src="https://github.com/playfultechnology/RasPBX/blob/main/images/asterisk-rvvv.jpg" alt="Asterisk -rvvv" />
+
 # FreePBX Configuration
 
 ## 8.) FreePBX Settings
