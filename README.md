@@ -28,11 +28,11 @@ This guide is based on my own experience combined with snippets from various sou
 ## 2.) Configure OS in Windows (2mins)
  - a.) Once the OS image is burned, the SD card should automically be mounted in Windows Explorer as a partition named "bootfs"
  - b.) Create an empty file in the bootfs root directory named "ssh"
- - c.) Create a text file named "userconf" in the bootfs root directory containing the following:
+ - c.) We need to create a pi:raspberry user to enable remote access, so create a text file named "userconf" in the bootfs root directory containing the following:
 ```
 pi:$6$c70VpvPsVNCG0YR5$l5vWWLsLko9Kj65gcQ8qvMkuOoRkEagI90qi3F/Y7rm8eNYZHW8CY6BOIKwMH7a3YYzZYL90zf304cAHLFaZE0
 ```
-
+(that's the hash of the "raspberry" password)
 <img src="https://github.com/playfultechnology/RasPBX/blob/main/images/bootfs.jpg" alt="BootFS" />
 
 ## 3.) Copy Installation script to Raspberry Pi (2mins)
